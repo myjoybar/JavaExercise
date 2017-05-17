@@ -21,10 +21,30 @@ public class BlockingQueueJava {
     List<User> listUser = new ArrayList<>();
     List<User> listUserCopy = new ArrayList<>();
 
+
+    public BlockingQueue<User> getBlockingQueue() {
+        return blockingQueue;
+    }
+
     public static void main(String[] args) {
         System.out.println("Hello World!");
         BlockingQueueJava blockingQueueJava = new BlockingQueueJava();
         blockingQueueJava.init();
+
+        BlockingQueue<User> blockingQueueGet =blockingQueueJava.getBlockingQueue();
+
+        BlockingQueue<User> blockingQueueGet2 = new LinkedBlockingDeque<>();
+        BlockingQueue<User> blockingQueueGet3 = new LinkedBlockingDeque<>();
+
+        blockingQueueGet2.addAll(blockingQueueGet);
+        blockingQueueGet3.addAll(blockingQueueGet);
+
+        System.out.println("blockingQueueGet2.size()="+blockingQueueGet2.size());
+        System.out.println("blockingQueueGet3.size()="+blockingQueueGet3.size());
+        blockingQueueGet2.poll();
+
+        System.out.println("blockingQueueGet2.size()="+blockingQueueGet2.size());
+        System.out.println("blockingQueueGet3.size()="+blockingQueueGet3.size());
 
     }
 
@@ -71,7 +91,6 @@ public class BlockingQueueJava {
         blockingQueue.offer(user1);
         blockingQueue.offer(user2);
 
-
         blockingQueueCopy.addAll(blockingQueue);
 
         System.out.println("-------4-----");
@@ -91,9 +110,11 @@ public class BlockingQueueJava {
         System.out.println("-------6-----" );
 
         //队列方式遍历，元素逐个被移除
-        while (blockingQueue.peek() != null ) {
-            System.out.println(blockingQueue.poll());
-        }
+//        while (blockingQueue.peek() != null ) {
+//            System.out.println(blockingQueue.poll());
+//        }
+
+
 
     }
 
