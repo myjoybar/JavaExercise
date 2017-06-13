@@ -1,4 +1,4 @@
-package inject;
+package inject.inject1;
 
 /**
  * Created by joybar on 2017/6/2.

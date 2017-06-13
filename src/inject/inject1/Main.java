@@ -1,4 +1,4 @@
-package inject;
+package inject.inject1;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -21,7 +21,7 @@ public class Main {
         System.out.println(singgleInstance1==singgleInstance2);
 
 
-        Class clazz = Class.forName("inject.SinggleInstance");
+        Class clazz = Class.forName("inject.inject1.SinggleInstance");
 
         Method method = clazz.getMethod("newInstance");
 
