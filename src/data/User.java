@@ -3,7 +3,7 @@ package data;
 /**
  * Created by joybar on 15/05/17.
  */
-public class User {
+public class User  implements Cloneable{
 
     private String userName;
     private int age;
@@ -28,6 +28,16 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Object clone() {
+        User o = null;
+        try {
+            o = (User) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return o;
     }
 
     @Override
