@@ -16,6 +16,33 @@ public class Test {
         System.out.println("UNSPECIFIED="+UNSPECIFIED);
         System.out.println("EXACTLY="+EXACTLY);
         System.out.println("AT_MOST="+AT_MOST);
+
+        paly(new doListener() {
+            @Override
+            public void doAction() {
+                try {
+                    System.out.println("---doAction--");
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("---doAction");
+            }
+        });
+
+        System.out.println("------");
     }
+
+
+   static private void paly(doListener doListener){
+        doListener.doAction();
+    }
+
+
+
+    interface  doListener{
+        void doAction();
+    }
+
 
 }
