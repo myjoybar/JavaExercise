@@ -68,6 +68,18 @@ public class ChatNewThreeAdConfig {
         this.accessRightDownConfig = accessRightDownConfig;
     }
 
+    @Override
+    public String toString() {
+        return "ChatNewThreeAdConfig{" +
+                "overAll=" + overAll +
+                ", surpriseTotalCount=" + surpriseTotalCount +
+                ", minTime=" + minTime +
+                ", defaultTime=" + defaultTime +
+                ", accessBottomConfig=" + accessBottomConfig.toString() +
+                ", accessRightDownConfig=" + accessRightDownConfig.toString() +
+                '}';
+    }
+
     public static class AccessBottomConfigBean {
         /**
          * overAll : 1
@@ -91,6 +103,14 @@ public class ChatNewThreeAdConfig {
 
         public void setAutoDismissTime(int autoDismissTime) {
             this.autoDismissTime = autoDismissTime;
+        }
+
+        @Override
+        public String toString() {
+            return "AccessBottomConfigBean{" +
+                    "overAll=" + overAll +
+                    ", autoDismissTime=" + autoDismissTime +
+                    '}';
         }
     }
 
@@ -127,6 +147,15 @@ public class ChatNewThreeAdConfig {
 
         public void setChatSessionFreeTime(int chatSessionFreeTime) {
             this.chatSessionFreeTime = chatSessionFreeTime;
+        }
+
+        @Override
+        public String toString() {
+            return "AccessRightDownConfigBean{" +
+                    "overAll=" + overAll +
+                    ", autoDismissTime=" + autoDismissTime +
+                    ", chatSessionFreeTime=" + chatSessionFreeTime +
+                    '}';
         }
     }
 }

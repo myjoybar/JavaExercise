@@ -10,7 +10,7 @@ public class Main {
         System.out.println("Hello World!");
 
         ChatNewThreeAdConfig chatNewThreeAdConfig = GsonUtil.parseJsonWithGson(jsonData, ChatNewThreeAdConfig.class);
-                System.out.println(chatNewThreeAdConfig.getAccessBottomConfig().getAutoDismissTime());
+                System.out.println(chatNewThreeAdConfig.toString());
 
     }
 }
