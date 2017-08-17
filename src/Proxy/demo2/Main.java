@@ -20,7 +20,6 @@ public class Main {
         proxySubject.doSomething();
 
 
-
         //  write proxySubject class binary data to file
       //  createProxyClassFile();
 

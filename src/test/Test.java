@@ -35,6 +35,17 @@ public class Test {
 //
 //        System.out.println("------");
         testList();
+        testTime();
+        testXiaoshu(11);
+        testXiaoshu(2);
+        testXiaoshu(1.0);
+        testXiaoshu(0.5);
+        testXiaoshu(0.3);
+        testXiaoshu(0.7);
+        testXiaoshu(0.03);
+        testXiaoshu(0.005);
+        testXiaoshu(0.007);
+
     }
 
 
@@ -55,7 +66,49 @@ public class Test {
         System.out.println("------"+ Arrays.toString(list.toArray()));
     }
 
+    static  private  void testTime(){
+        long ct =System.currentTimeMillis();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        long ct2 =System.currentTimeMillis();
+        System.out.println("ct2="+ct2);
+        System.out.println("------"+(ct2-ct));
+    }
 
+
+    static private void testXiaoshu(double tj_Sow){
+
+        int tapjoyWeight = 1;
+        int offerWallWeight = 5;
+        if(tj_Sow>=1.0){
+            tapjoyWeight = (int) tj_Sow;
+            offerWallWeight = 1;
+        }else if(tj_Sow>=0.1){
+            tapjoyWeight =  (int) (tj_Sow*10);
+            offerWallWeight = 10;
+            offerWallWeight = offerWallWeight/tapjoyWeight;
+            tapjoyWeight = 1;
+
+        }else if(tj_Sow>=0.01){
+            tapjoyWeight =  (int) (tj_Sow*100);
+            offerWallWeight = 100;
+            offerWallWeight = offerWallWeight/tapjoyWeight;
+            tapjoyWeight = 1;
+        }else if(tj_Sow>=0.001){
+            tapjoyWeight =  (int) (tj_Sow*1000);
+            offerWallWeight = 1000;
+            offerWallWeight = offerWallWeight/tapjoyWeight;
+            tapjoyWeight = 1;
+        }
+
+        System.out.println("=============="+tj_Sow);
+        System.out.println("tapjoyWeight="+tapjoyWeight);
+        System.out.println("offerWallWeight="+offerWallWeight);
+
+    }
 
 
 }
