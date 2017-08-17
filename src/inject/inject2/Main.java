@@ -5,7 +5,8 @@ import java.lang.reflect.*;
 public class Main {
 
     //http://wingjay.com/2017/04/26/Java-%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%8F%8D%E5%B0%84/
-    public static void main(String[] args) throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+   // http://blog.csdn.net/mr_tim/article/details/51594717
+    public static void main(String[] args) throws Exception {
 
         try {
             Class clazzUserBean = Class.forName("inject.inject2.UserBean");
@@ -16,6 +17,30 @@ public class Main {
             printClassConstructors(clazzUserBean);
             System.out.println("=============");
             handleClassMethods(clazzUserBean);
+
+            System.out.println("=============getProperty");
+
+            getProperty(clazzUserBean,"userName");
+
+            System.out.println("=============getStaticProperty");
+            getStaticProperty(clazzUserBean,"age");
+
+            System.out.println("=============invokeMethod,无参数");
+
+            invokeMethod(clazzUserBean,"invokeMethod");
+            System.out.println("=============invokeMethod,有一个参数");
+            Object[]  args1 = {"sss"};
+            invokeMethod1(clazzUserBean,"invokeMethod1",args1);
+            System.out.println("=============invokeMethod,有两个参数");
+            Object[]  args2 = {"sss",new Integer(22)};
+            invokeMethod1(clazzUserBean,"invokeMethod2",args2);
+            Object[]  args3 = {"sss",new Integer(22)};
+            System.out.println("=============invokeMethodStatic,有两个参数");
+            invokeStaticMethod(clazzUserBean,"invokeMethodStatic",args3);
+
+            System.out.println("=============新建实例");
+            Object[]  args4 = {"Jim"};
+            newInstance("inject.inject2.UserBean",args4);
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -92,5 +117,106 @@ public class Main {
                 }
             }
         }
+    }
+
+    /**
+     * 1. 得到某个对象的属性
+     */
+    public static Object getProperty(Class clazzUserBean, String fieldName) throws Exception {
+
+        Object obj = clazzUserBean.newInstance();
+        if(obj instanceof UserBean){
+            System.out.println("is UserBean");
+        }
+        Field field = clazzUserBean.getField(fieldName);
+        Object property = field.get(obj);
+        System.out.println(fieldName+"="+property.toString());
+        return property;
+    }
+
+    /**
+     * 2. 得到某个类的静态属性
+     */
+
+    public  static Object getStaticProperty(Class clazzUserBean, String fieldName)
+            throws Exception {
+
+        Field field = clazzUserBean.getField(fieldName);
+        Object property = field.get(clazzUserBean);
+        System.out.println(fieldName+"="+property.toString());
+        return property;
+    }
+    /**
+     * 3. 执行某对象的方法 无参数
+     */
+    public static Object invokeMethod(Class clazzUserBean, String methodName) throws Exception {
+
+        Object obj = clazzUserBean.newInstance();
+        if(obj instanceof UserBean){
+            System.out.println("is UserBean");
+        }
+
+        Method method = clazzUserBean.getMethod(methodName);
+        return method.invoke(obj);
+    }
+
+    /**
+     * 3. 执行某对象的方法 参数
+     */
+    public static Object invokeMethod1(Class clazzUserBean, String methodName, Object[]  args) throws Exception {
+
+        Object obj = clazzUserBean.newInstance();
+        if(obj instanceof UserBean){
+            System.out.println("is UserBean");
+        }
+
+        Class[] argsClass = new Class[args.length];
+        for (int i = 0, j = args.length; i < j; i++) {
+            argsClass[i] = args[i].getClass();
+        }
+
+         Method method = clazzUserBean.getMethod(methodName,argsClass);
+       // Method method = clazzUserBean.getMethod(methodName,new Class[]{String.class});
+
+        return method.invoke(obj,args);
+    }
+
+
+    /**
+     * 4. 执行某个类的静态方法
+
+     */
+    public  static Object invokeStaticMethod(Class clazzUserBean, String methodName,
+                                     Object[] args) throws Exception {
+
+        Class[] argsClass = new Class[args.length];
+
+        for (int i = 0, j = args.length; i < j; i++) {
+            argsClass[i] = args[i].getClass();
+        }
+
+        Method method = clazzUserBean.getMethod(methodName,argsClass);
+
+        return method.invoke(null, args);
+    }
+
+    /**
+     *    5. 新建实例
+     */
+
+    public  static Object newInstance(String className, Object[] args) throws Exception {
+        Class newoneClass = Class.forName(className);
+
+        Class[] argsClass = new Class[args.length];
+
+        for (int i = 0, j = args.length; i < j; i++) {
+            argsClass[i] = args[i].getClass();
+        }
+
+        Constructor cons = newoneClass.getConstructor(argsClass);
+        UserBean userBean = (UserBean) cons.newInstance(args);
+        System.out.println("userBean="+userBean.toString());
+        return cons.newInstance(args);
+
     }
 }
