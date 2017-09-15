@@ -1,7 +1,11 @@
 package test;
 
+import test.base.Chiledren;
+
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by joybar on 2017/5/16.
@@ -34,6 +38,13 @@ public class Test {
 //        });
 //
 //        System.out.println("------");
+
+
+        Chiledren chiledren = new Chiledren();
+        chiledren.init11();
+
+
+
         testList();
         testTime();
         testXiaoshu(11);
@@ -108,7 +119,36 @@ public class Test {
         System.out.println("tapjoyWeight="+tapjoyWeight);
         System.out.println("offerWallWeight="+offerWallWeight);
 
+
+
+
+        System.out.println("getQueryString"+getQueryString("https://app.kiip.me/postback/purchase/?reward_id=599bf6fe-427d-2c33-a1b6-f72cb8dadb7c","reward_id"));
+
+
     }
+
+
+
+    public static Map<String, String> toMap(String url) {
+        Map<String, String>map = null;
+        if (url != null && url.indexOf("&") > -1 && url.indexOf("=") > -1) {
+            map = new HashMap<String, String>();
+            String[] arrTemp = url.split("&");
+            for (String str : arrTemp) {
+                String[] qs = str.split("=");
+                map.put(qs[0], qs[1]);
+            }
+        }
+        return map;
+    }
+
+
+
+
+    public static String getQueryString(String url, String name) {
+        return toMap(url).get(name).toString();
+    }
+
 
 
 }
