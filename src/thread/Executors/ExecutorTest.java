@@ -37,7 +37,7 @@ public class ExecutorTest {
 
         @Override
         public String call() throws Exception {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.SECONDS.sleep(2);
             return "A";
         }
     }

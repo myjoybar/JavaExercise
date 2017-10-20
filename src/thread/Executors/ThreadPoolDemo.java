@@ -15,10 +15,10 @@ public class ThreadPoolDemo {
 
     public static void main(String[] args) {
 
-     //   newCachedThreadPool();
-       fixedThreadPoolDemo();
+        newCachedThreadPool();
+        //  fixedThreadPoolDemo();
         //  singleThreadExecutorDemo();
-        scheduledThreadPoolDemo();
+        // scheduledThreadPoolDemo();
 
     }
 
@@ -32,7 +32,7 @@ public class ThreadPoolDemo {
       ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
 
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 50; i++) {
             final int index = i;
 
             cachedThreadPool.execute(new Runnable() {
@@ -43,11 +43,11 @@ public class ThreadPoolDemo {
                 }
             });
 
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Thread.sleep(100);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 

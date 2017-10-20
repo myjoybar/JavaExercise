@@ -15,6 +15,7 @@ public class Main {
         a.isDaemon();//判断a线程是否为守护线程
         a.start();
         b.start();
+
     }
 
 
