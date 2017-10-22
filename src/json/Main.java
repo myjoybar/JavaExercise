@@ -1,6 +1,5 @@
 package json;
 
-import com.google.gson.JsonObject;
 import com.oracle.javafx.jmx.json.JSONException;
 import json.data.ChatNewThreeAdConfig;
 import json.data.ClassBean;
