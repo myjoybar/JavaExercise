@@ -47,15 +47,15 @@ public class Test {
 
         testList();
         testTime();
-        testXiaoshu(11);
-        testXiaoshu(2);
-        testXiaoshu(1.0);
-        testXiaoshu(0.5);
-        testXiaoshu(0.3);
-        testXiaoshu(0.7);
-        testXiaoshu(0.03);
-        testXiaoshu(0.005);
-        testXiaoshu(0.007);
+//        testXiaoshu(11);
+//        testXiaoshu(2);
+//        testXiaoshu(1.0);
+//        testXiaoshu(0.5);
+//        testXiaoshu(0.3);
+//        testXiaoshu(0.7);
+//        testXiaoshu(0.03);
+//        testXiaoshu(0.005);
+//        testXiaoshu(0.007);
 
     }
 
