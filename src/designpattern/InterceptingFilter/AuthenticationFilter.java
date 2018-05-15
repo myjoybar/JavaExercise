@@ -7,6 +7,6 @@ import designpattern.InterceptingFilter.interfaces.Filter;
  */
 public class AuthenticationFilter implements Filter {
     public void execute(String request){
-        System.out.println("Authenticating request: " + request);
+        System.out.println("Authenticating Request: " + request);
     }
 }
