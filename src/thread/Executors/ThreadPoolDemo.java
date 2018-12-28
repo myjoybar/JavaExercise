@@ -31,7 +31,6 @@ public class ThreadPoolDemo {
        */
       ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
 
-
         for (int i = 0; i < 50; i++) {
             final int index = i;
 
