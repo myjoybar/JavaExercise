@@ -8,7 +8,7 @@ public class Main {
 
         System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles","true");
         IHello iHello=(IHello) Proxy.newProxyInstance(IHello.class.getClassLoader(),//加载接口的类加载器
-                new Class[]{IHello.class},
+                        new Class[]{IHello.class},
                 new MyInvocationHandler(new HelloIml()));
         iHello.sayHello();
 
