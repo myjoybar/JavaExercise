@@ -8,11 +8,11 @@ import java.lang.reflect.Method;
  */
 public interface HookListener {
 
-    void beforeHookedMethod(Method method, Object[] args);
+
+    boolean isInterceptedBeforeHookedMethod(Method method, Object[] args);
 
     Object hookedMethod(Object target, Method method, Object[] args) throws InvocationTargetException, IllegalAccessException;
 
-    boolean isIntercept();
 
     void afterHookedMethod(Method method, Object[] args);
 }
