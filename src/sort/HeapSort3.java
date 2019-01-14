@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Created by joybar on 2018/12/28.
  */
-public class HeapSort {
+public class HeapSort3 {
 
     public static int[] testArray = {8, 1, 3, 9, 2, 4, 7, 6, 5, 0, 4, 2, 12, 1, 2, 67, 54, 3, 21, 1};
 

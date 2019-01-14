@@ -10,7 +10,7 @@ public class FastSort {
 
     public static void main(String[] args) {
         System.out.println("Before sort,array = " + Arrays.toString(testArray));
-        fastSort1(testArray, 0, testArray.length - 1);
+        quickSort(testArray, 0, testArray.length - 1);
 //        fastSort1(testArray, 0, testArray.length - 1);
 //        fastSort2(testArray, 0, testArray.length - 1);
         System.out.println("After sort2,array = " + Arrays.toString(testArray));
@@ -151,11 +151,11 @@ public class FastSort {
                 i++;
             }
             //如果满足条件则交换
-            if (i < j) {
+          //  if (i < j) {
                 t = arr[j];
                 arr[j] = arr[i];
                 arr[i] = t;
-            }
+           // }
 
         }
         //最后将基准为与i和j相等位置的数字交换
@@ -167,5 +167,37 @@ public class FastSort {
         quickSort(arr, j + 1, high);
     }
 
+
+    public static  void fastSort3(int[] arr, int low, int high) {
+
+        int l = low;
+        int r = high;
+
+        if (l < r) {
+
+            int signValue = arr[l];
+            while (l < r) {
+                while (l < r && arr[r] >= signValue) {
+                    r--;
+                }
+                while (l < r && arr[l] <= signValue) {
+                    l++;
+                }
+                if (l < r) {
+                    int temp = arr[r];
+                    arr[r] = arr[l];
+                    arr[l] = temp;
+                }
+
+
+            }
+            arr[low] = arr[l];
+            arr[l] = signValue;
+
+            fastSort3(arr, low, l - 1);
+            fastSort3(arr, l + 1, high);
+        }
+
+    }
 
 }
