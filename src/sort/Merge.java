@@ -51,7 +51,6 @@ public class Merge {
             array[i] = arr[i];
         }
 
-
     }
 
 

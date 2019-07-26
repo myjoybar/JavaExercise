@@ -78,15 +78,16 @@ public class Test {
     }
 
     static  private  void testTime(){
-        long ct =System.currentTimeMillis();
+        long ct1 =System.currentTimeMillis();
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         long ct2 =System.currentTimeMillis();
+        System.out.println("ct1="+ct1);
         System.out.println("ct2="+ct2);
-        System.out.println("------"+(ct2-ct));
+        System.out.println("---ct2-ct1---"+(ct2-ct1));
     }
 
 

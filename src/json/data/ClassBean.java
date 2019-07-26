@@ -43,10 +43,19 @@ public class ClassBean {
     }
 
     public static class StudentsBean {
+        public StudentsBean(String name, String age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        public StudentsBean() {
+        }
+
         /**
          * name : rose
          * age : 25
          */
+
 
         private String name;
         private String age;

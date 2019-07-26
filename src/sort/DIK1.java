@@ -65,9 +65,6 @@ public class DIK1 {
             if(k-1>index){
                 QSort2(a,index+1,end,k);
             }
-
-
         }
-
     }
 }

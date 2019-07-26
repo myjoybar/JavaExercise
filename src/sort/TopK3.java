@@ -68,12 +68,7 @@ public class TopK3 {
                 for (int j = tempKArray.length - 1; j > 0; j--) {
                     adjustHeapMin(tempKArray, 0, j);
                 }
-
-//                System.out.println("top  " + tempKArray[0]);
-//                System.out.println("before sort2,tempKArray = " + Arrays.toString(tempKArray));
-
             }
-
         }
         System.out.println("--------");
         System.out.println("After sort2,tempKArray = " + Arrays.toString(tempKArray));
