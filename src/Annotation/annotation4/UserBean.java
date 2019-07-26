@@ -40,6 +40,6 @@ public class UserBean {
 
     @Test(id = 4)
     public void testFailure() {
-        throw new RuntimeException("Test failure");
+        throw new RuntimeException("MoveNumber failure");
     }
 }

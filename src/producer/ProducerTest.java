@@ -10,12 +10,13 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * Created by joybar on 14/01/19.
  */
-public class ProducerTest2 {
+public class ProducerTest {
 
-    public static int FULL_SIZE = 1;
+    public static int FULL_SIZE = 10;
     public static int EMPTY_SIZE = 0;
     public static List<Integer> productList = new ArrayList<>(10);
 
+    public static Object object = new Object();
     public static Lock lock = new ReentrantLock();
     Condition full_condition = lock.newCondition();
     Condition empty_condition = lock.newCondition();
@@ -23,11 +24,13 @@ public class ProducerTest2 {
 
     public static void main(String[] args) {
 
-        ProducerTest2 producerTest = new ProducerTest2();
+        ProducerTest producerTest = new ProducerTest();
         Producer producer = producerTest.new Producer();
         Consumer consumer = producerTest.new Consumer();
         new Thread(consumer).start();
         new Thread(producer).start();
+        new Thread(producer).start();
+        new Thread(consumer).start();
 
 
     }
@@ -63,50 +66,51 @@ public class ProducerTest2 {
 
     private void produce() throws InterruptedException {
         Random random = new Random();
-        lock.lock();
-        try {
-            while (true) {
+        while (true) {
+
+            synchronized (object) {
                 if (productList.size() == FULL_SIZE) {
-                    System.out.println("produce is waiting");
-                    full_condition.await();
+                    try {
+                        System.out.println("Producer is waiting  ");
+                        object.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
                 int value = random.nextInt(10);
                 productList.add(value);
                 System.out.println("produce value = " + value);
                 Thread.sleep(1 * 1000);
-                empty_condition.signal();
+                object.notify();
             }
 
 
-        } catch (Exception e) {
-            lock.unlock();
         }
 
     }
 
-    private synchronized void consume() throws InterruptedException {
-        lock.lock();
-        try {
-            while (true) {
+    private  void consume() throws InterruptedException {
+        while (true) {
 
-
+            synchronized (object) {
                 if (productList.size() == EMPTY_SIZE) {
-                    System.out.println("Consumer is waiting");
-                    empty_condition.await();
+                    try {
+                        System.out.println("Consumer is waiting");
+                        object.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 int value = productList.get(0);
                 productList.remove(0);
                 System.out.println("consume value = " + value);
                 Thread.sleep(1 * 1000);
-                full_condition.signal();
-            }
-        } catch (
-                Exception e
-                )
+                object.notify();
 
-        {
-            lock.unlock();
+            }
+
+
         }
 
     }
