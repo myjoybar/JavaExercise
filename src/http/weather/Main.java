@@ -1,8 +1,12 @@
 package http.weather;
 
 import http.HttpRequest;
+import http.http2.HttpRequestUtil;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.util.HashMap;
 
 public class Main {
@@ -17,7 +21,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         System.out.println("Hello World!");
-        getNowWeather();
+//        getNowWeather();
+//        getInsUserInfo();
+        test();
 
     }
 
@@ -34,4 +40,64 @@ public class Main {
         System.out.println("response = "+response);
 
     }
+
+
+    private static void  getInsUserInfo(){
+       String url = "https://www.instagram.com/web/search/topsearch/?context=blended&query=joy.dingtone";
+        //   String url = "https://www.instagram.com/web/search/topsearch/";
+        HashMap<String,String> mapParam = new HashMap<>();
+        mapParam.put("context","blended");
+        mapParam.put("query","joy.dingtone");
+        String response = HttpRequest.sendGet(url,null);
+        System.out.println("response = "+response);
+    }
+
+    ;
+    private static void  test(){
+           String url = "https://www.instagram.com/web/search/topsearch/";
+        HashMap<String,String> mapParam = new HashMap<>();
+        mapParam.put("context","blended");
+        mapParam.put("query","joy.dingtone");
+
+        HashMap<String,String> mapHeaders = new HashMap<>();
+        mapParam.put("host","www.instagram.com");
+        mapParam.put("accept-encoding","gzip");
+        mapParam.put("user-agent","okhttp/3.5.0");
+        try {
+            HttpURLConnection connGet = (HttpURLConnection) HttpRequestUtil.sendGetRequest(url,
+                    mapParam,
+                    mapHeaders);
+            if (null == connGet)
+            {
+                System.out.println( "连接网络失败");
+            }
+            else {
+                InputStream inStream = connGet.getInputStream();
+                byte[] data = read(inStream);
+                String json = new String(data);
+                System.out.println( "json = "+json);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public static byte[] read(InputStream inStream) throws Exception
+    {
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int len = 0;
+        while ((len = inStream.read(buffer)) != -1)
+        {
+            outStream.write(buffer, 0, len);
+        }
+        inStream.close();
+        return outStream.toByteArray();
+    }
+
+
 }

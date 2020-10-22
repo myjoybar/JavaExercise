@@ -23,17 +23,20 @@ public class HttpRequest {
     public static String sendGet(String url,  HashMap<String,String> mapParams) {
 
         String param = "";
-        Iterator iterator = mapParams.entrySet().iterator();
-        while (iterator.hasNext()){
-            Map.Entry<String,String> entry = (Map.Entry<String, String>) iterator.next();
-            param = param+entry.getKey()+"="+entry.getValue()+"&";
+        if(null!=mapParams){
+            Iterator iterator = mapParams.entrySet().iterator();
+            while (iterator.hasNext()){
+                Map.Entry<String,String> entry = (Map.Entry<String, String>) iterator.next();
+                param = param+entry.getKey()+"="+entry.getValue()+"&";
+            }
+            param.substring(param.length() - 1, param.length());
         }
-        param.substring(param.length() - 1, param.length());
+
         String result = "";
         BufferedReader in = null;
         try {
         	 String urlNameString = "";
-        	if(null != param ){
+        	if(null != param &&!"".equals(param) ){
         		 urlNameString = url + "?" + param;
         	}else{
         		 urlNameString = url;
@@ -49,6 +52,8 @@ public class HttpRequest {
             connection.setRequestProperty("connection", "Keep-Alive");
             connection.setRequestProperty("user-agent",
                     "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
+
+
             // 建立实际的连接
             connection.connect();
             // 获取所有响应头字段
@@ -76,6 +81,7 @@ public class HttpRequest {
                 }
             } catch (Exception e2) {
                 e2.printStackTrace();
+                System.out.println("Exception！" + e2.getMessage());
             }
         }
         return result;

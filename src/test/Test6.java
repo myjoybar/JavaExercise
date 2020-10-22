@@ -23,5 +23,16 @@ public class Test6 {
         System.out.println("studentsBean1 = "+studentsBean1.toString());
         System.out.println("studentsBean = "+studentsBean.toString());
 
+        test();
+    }
+
+    private static void test() {
+        Test6 nullTest = null;
+// hello
+        nullTest.test1("hello");
+    }
+
+    private static void test1(String text) {
+        System.out.println(text);
     }
 }

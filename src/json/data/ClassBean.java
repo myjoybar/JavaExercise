@@ -15,6 +15,7 @@ public class ClassBean {
      */
 
     private String className;
+    private String str_test = "AAA";
     private int amount;
     private List<StudentsBean> students;
 

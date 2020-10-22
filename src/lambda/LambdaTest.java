@@ -2,6 +2,7 @@ package lambda;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 /**
@@ -92,4 +93,9 @@ public class LambdaTest {
     }
 
 
+    public void  test7(){
+        Runnable r = () -> System.out.println("Hello Lambda!");
+        Consumer<String> con = (x) -> System.out.println(x);
+        Consumer<String> con2 = x -> System.out.println(x);
+    }
 }

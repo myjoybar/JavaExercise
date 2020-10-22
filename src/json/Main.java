@@ -5,6 +5,7 @@ import com.oracle.javafx.jmx.json.JSONException;
 import json.data.ChatNewThreeAdConfig;
 import json.data.ClassBean;
 import json.data.ClassBean.StudentsBean;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +15,23 @@ public class Main {
 
     public static void main(String[] args) {
 
+//        test1();
+//        test2();
+        test3();
+
+
+
+
+
+    }
+
+    private static void test3(){
+        ClassBean  classBean = new ClassBean();
+        System.out.println(GsonUtil.parseBeanToStr(classBean));
+
+    }
+
+    private static void test1(){
         String jsonData = "{ \"overAll\": 1, \"surpriseTotalCount\": 3, \"minTime\": 3, \"defaultTime\": 15, \"accessBottomConfig\": { \"overAll\": 1, \"autoDismissTime\": 5 }, \"accessRightDownConfig\": { \"overAll\": 1, \"autoDismissTime\": 5, \"chatSessionFreeTime\": 8 } }";
         System.out.println("Hello World!");
 
@@ -71,11 +89,30 @@ public class Main {
         System.out.println(GsonUtil.parseBeanToStr(map1));
 
         String mapStr = "{\"tom\":{\"name\":\"Tom\",\"age\":\"21\"},\"jose\":{\"name\":\"Jose\",\"age\":\"22\"}}";
+    }
+
+    private static void test2(){
+        Map<String, String> HEADER_MAP = new HashMap<>();
+        HEADER_MAP.put("Connection", "keep-alive");
+        HEADER_MAP.put("Content-Type", "application/json");
+        HEADER_MAP.put("X-IG-Connection-Type", "mobile(UMTS)");
+        HEADER_MAP.put("X-IG-Capabilities", "3ToAAA==");
+        HEADER_MAP.put("Accept-Language", "en-US");
+
+        System.out.println("Map: "+ GsonUtil.parseBeanToStr(HEADER_MAP));
+
+        String mapStr = "{\"X-IG-Capabilities\":\"3ToAAA\\u003d\\u003d\",\"Connection\":\"keep-alive\",\"Accept-Language\":\"en-US\",\"X-IG-Connection-Type\":\"mobile(UMTS)\",\"Content-Type\":\"application/json\"}";
 
 
 
+        System.out.println("Map: "+ GsonUtil.parseBeanToStr(HEADER_MAP));
 
 
+        Map<String, String> HEADER_MAP2 = GsonUtil.GsonToMaps(mapStr);
+
+        for (String key : HEADER_MAP2.keySet()) {
+            System.out.println("key= " + key + " and value= " + HEADER_MAP2.get(key).toString());
+        }
     }
 
 

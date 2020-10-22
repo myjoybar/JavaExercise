@@ -3,6 +3,7 @@ package sort;
 import java.util.Arrays;
 
 /**
+ * 前后指针法
  * Created by joybar on 2018/12/28.
  */
 public class FastSort2 {

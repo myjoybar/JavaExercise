@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by joybar on 2017/7/27.
@@ -20,11 +21,12 @@ public class GsonUtil {
     }
 
     //将Json数据解析成相应的映射对象
-    public static <T> T parseJsonStrToBean(String jsonData,Type type) {
+    public static <T> T parseJsonStrToBean(String jsonData, Type type) {
         Gson gson = new Gson();
         T result = gson.fromJson(jsonData, type);
         return result;
     }
+
     public static <T> List<T> parseJsonArrayStrToList(String jsonData, Class<T> type) {
         Gson gson = new Gson();
         List<T> result = gson.fromJson(jsonData, new TypeToken<List<T>>() {
@@ -74,6 +76,12 @@ public class GsonUtil {
         return list;
     }
 
-
+    public static Map<String, String> GsonToMaps(String gsonString) {
+        Map<String, String> map = null;
+        Gson gson = new Gson();
+        map = gson.fromJson(gsonString, new TypeToken<Map<String, String>>() {
+        }.getType());
+        return map;
+    }
 
 }
